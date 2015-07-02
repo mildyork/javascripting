@@ -1,10 +1,14 @@
+var slice = Array.prototype.slice;
+
 function logger(namespace) {
 
-	function logging(){
-		console.log(namespace, arguments[0]);
+	return function logging(){
+		Function.prototype.apply(logging, namespace);
+		console.log(slice.call(arguments));
+		// console.log(namespace);
 	}
 
-	return logging.apply()
+	
 }
 
 module.exports = logger;
